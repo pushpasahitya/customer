@@ -1,0 +1,134 @@
+<div class="container">
+    <div class="row py-4">
+        <div class="col-md-8 row">
+            <div class="col">
+                <span (click)="selectedTab=tabs.GRIDVIEW" [class]="tabs.GRIDVIEW==selectedTab?'active':''">Grid View</span>
+            </div>
+            <div class="col">
+                <span (click)="selectedTab=tabs.LISTVIEW" [class]="tabs.LISTVIEW==selectedTab?'active':''">List View</span>
+            </div>
+            <div class="col">
+                <span [class]="tabs.MAPVIEW==selectedTab?'active':''">Map View</span>
+            </div>
+            <div class="col">
+                <span (click)="selectedTab=tabs.NEWCUSTOMER"  [class]="tabs.NEWCUSTOMER==selectedTab?'active':''">New Customer</span>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row" *ngIf="selectedTab==tabs.GRIDVIEW">
+        <div *ngFor="let customer of customers" class="col-md-4">
+            <div class="card">
+                <div class="w-100 d-flex bg-primary">
+                    <div class="h6 text-white pull-left w-100 py-2">&nbsp;{{customer.firstname}} {{customer.lastname}}</div>
+                    <div class="pull-right py-2 text-white"><i class="ri-edit-box-line"></i>&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-5 ">
+                        <div class="py-2 px-2">
+                            <img src="../../../../assets/images/satisfaction.png" class="w-100">
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="py-2 px-2">
+                            <br>
+                            {{customer.state}}
+                            <br>
+                            {{customer.city}}
+                            <br>
+                            {{customer.address}}
+                        </div>
+                    </div>
+                
+                </div>    
+                <div class="py-2 px-2 text-right">
+                    <button (click)="viewCustomer(customer.id)" class="btn btn-primary btn-xs">View</button>
+                </div>
+                </div>
+        </div>
+
+    </div>
+    <div class="row" *ngIf="selectedTab==tabs.LISTVIEW">
+        <table class="table"> 
+            <thead class="bg-primary">
+                <tr>
+                    <th class="text-white">First Name</th>
+                    <th class="text-white">Last Name</th>
+                    <th class="text-white">Address</th>
+                    <th class="text-white">State</th>
+                    <th class="text-white">City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers">
+                    <td>
+                        {{customer.firstname}}
+                    </td>
+                    <td>
+                        {{customer.lastname}}
+                    </td>
+                    <td>
+                        {{customer.address}}
+                    </td>
+                    <td>
+                        {{customer.state}}
+                    </td>
+                    <td>
+                        {{customer.city}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" *ngIf="selectedTab==tabs.MAPVIEW">
+        <div class="col-md-2">
+            <div class="py-2 px-2">                
+                <img src="../../../../assets/images/satisfaction.png" class="w-100">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <b>{{selectedCustomer.firstname}} {{selectedCustomer.lastname}}</b>
+            <br>
+            {{selectedCustomer.address}}
+            <br>
+            {{selectedCustomer.state}}
+            <br>
+            {{selectedCustomer.city}}
+            <br>          
+        </div>
+        <div class="col-md-12">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.5124455167515!2d80.64207771403815!3d16.5002072321283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fb73276abc3d%3A0x524a3f50dd40a549!2sCertybox%20Vijayawada!5e0!3m2!1sen!2sin!4v1672224437962!5m2!1sen!2sin" class="w-100" style="height:400px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+
+    <form [formGroup]="customerForm" class="row" *ngIf="selectedTab==tabs.NEWCUSTOMER">
+            <div class="col-md-6 py-2 px-2">
+                <label>First Name</label>
+                <input type="text" class="form-control" placeholder="Enter First Name" formControlName="firstname">
+            </div>
+            <div class="col-md-6 py-2 px-2">
+                <label>Last Name</label>
+                <input type="text" class="form-control" placeholder="Enter Last Name"  formControlName="lastname">
+            </div>
+            <div class="col-md-6 py-2 px-2">
+                <label>State</label>
+                <input type="text" class="form-control" placeholder="Enter State"  formControlName="state">
+            </div>
+            <div class="col-md-6 py-2 px-2">
+                <label>City</label>
+                <input type="text"  class="form-control" placeholder="Enter City"  formControlName="city">
+            </div>
+            <div class="col-md-6 py-2 px-2">
+                <label>Address</label>
+                <textarea  class="form-control" placeholder="Enter Address"  formControlName="address"></textarea>
+            </div>
+            <div class="col-md-12 py-2 px-2">
+                <button (click)="addCustomer()" class="btn btn-primary">Sumit</button>
+            </div>
+        </form>
+    
+</div>
+   
+    
+

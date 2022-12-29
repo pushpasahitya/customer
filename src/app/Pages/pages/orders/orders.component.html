@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 py-3">
+            <table class="table w-100">
+                <thead class="bg-primary text-white">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Order Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orders">
+                        <td>{{order.productName}}</td>
+                        <td>{{order.productPrice}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
